@@ -12,20 +12,26 @@ import kz.baltabay.assel.courseplatform.exception.BaltabayAsselBadRequestExcepti
 import kz.baltabay.assel.courseplatform.exception.BaltabayAsselNotFoundException;
 import kz.baltabay.assel.courseplatform.mapper.BaltabayAsselFileMapper;
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselFileAttachmentRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class BaltabayAsselFileStorageService {
+    private static final Logger log = LoggerFactory.getLogger(BaltabayAsselFileStorageService.class);
+
     private final BaltabayAsselFileAttachmentRepository fileRepository;
     private final BaltabayAsselFileMapper fileMapper;
+
+    public BaltabayAsselFileStorageService(BaltabayAsselFileAttachmentRepository fileRepository,
+                                           BaltabayAsselFileMapper fileMapper) {
+        this.fileRepository = fileRepository;
+        this.fileMapper = fileMapper;
+    }
 
     @Value("${app.files.upload-dir}")
     private String uploadDir;

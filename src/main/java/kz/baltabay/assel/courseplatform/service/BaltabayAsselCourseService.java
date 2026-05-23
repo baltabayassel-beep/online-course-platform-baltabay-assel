@@ -9,19 +9,27 @@ import kz.baltabay.assel.courseplatform.exception.BaltabayAsselNotFoundException
 import kz.baltabay.assel.courseplatform.mapper.BaltabayAsselCourseMapper;
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselCourseRepository;
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselUserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class BaltabayAsselCourseService {
+    private static final Logger log = LoggerFactory.getLogger(BaltabayAsselCourseService.class);
+
     private final BaltabayAsselCourseRepository courseRepository;
     private final BaltabayAsselUserRepository userRepository;
     private final BaltabayAsselCourseMapper courseMapper;
+
+    public BaltabayAsselCourseService(BaltabayAsselCourseRepository courseRepository,
+                                      BaltabayAsselUserRepository userRepository,
+                                      BaltabayAsselCourseMapper courseMapper) {
+        this.courseRepository = courseRepository;
+        this.userRepository = userRepository;
+        this.courseMapper = courseMapper;
+    }
 
     public Page<CourseResponse> findAll(String search, String category, BaltabayAsselCourseLevel level,
                                         Boolean published, Pageable pageable) {

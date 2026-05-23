@@ -6,7 +6,6 @@ import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.GradeSubmi
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.SubmissionRequest;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.SubmissionResponse;
 import kz.baltabay.assel.courseplatform.service.BaltabayAsselLearningService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/submissions")
-@RequiredArgsConstructor
 public class BaltabayAsselSubmissionController {
     private final BaltabayAsselLearningService learningService;
+
+    public BaltabayAsselSubmissionController(BaltabayAsselLearningService learningService) {
+        this.learningService = learningService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

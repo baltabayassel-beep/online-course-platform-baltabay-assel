@@ -1,7 +1,6 @@
 package kz.baltabay.assel.courseplatform.config;
 
 import kz.baltabay.assel.courseplatform.security.BaltabayAsselJwtAuthenticationFilter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -22,10 +21,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
 public class BaltabayAsselSecurityConfig {
     private final BaltabayAsselJwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
+
+    public BaltabayAsselSecurityConfig(BaltabayAsselJwtAuthenticationFilter jwtAuthenticationFilter,
+                                       UserDetailsService userDetailsService) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

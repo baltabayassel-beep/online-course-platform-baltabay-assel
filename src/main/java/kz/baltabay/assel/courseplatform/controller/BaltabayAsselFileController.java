@@ -3,7 +3,6 @@ package kz.baltabay.assel.courseplatform.controller;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselFileDto;
 import kz.baltabay.assel.courseplatform.entity.BaltabayAsselFileAttachment;
 import kz.baltabay.assel.courseplatform.service.BaltabayAsselFileStorageService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -18,9 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/files")
-@RequiredArgsConstructor
 public class BaltabayAsselFileController {
     private final BaltabayAsselFileStorageService fileStorageService;
+
+    public BaltabayAsselFileController(BaltabayAsselFileStorageService fileStorageService) {
+        this.fileStorageService = fileStorageService;
+    }
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public BaltabayAsselFileDto upload(@RequestParam("file") MultipartFile file) {

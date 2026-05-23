@@ -5,7 +5,6 @@ import java.util.List;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.LessonRequest;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.LessonResponse;
 import kz.baltabay.assel.courseplatform.service.BaltabayAsselLearningService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
 public class BaltabayAsselLessonController {
     private final BaltabayAsselLearningService learningService;
+
+    public BaltabayAsselLessonController(BaltabayAsselLearningService learningService) {
+        this.learningService = learningService;
+    }
 
     @GetMapping("/courses/{courseId}/lessons")
     public List<LessonResponse> findByCourse(@PathVariable Long courseId) {

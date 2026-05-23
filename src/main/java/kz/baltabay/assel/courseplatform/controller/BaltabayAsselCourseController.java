@@ -5,7 +5,6 @@ import kz.baltabay.assel.courseplatform.dto.BaltabayAsselCourseDtos.CourseReques
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselCourseDtos.CourseResponse;
 import kz.baltabay.assel.courseplatform.entity.BaltabayAsselCourseLevel;
 import kz.baltabay.assel.courseplatform.service.BaltabayAsselCourseService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,9 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/courses")
-@RequiredArgsConstructor
 public class BaltabayAsselCourseController {
     private final BaltabayAsselCourseService courseService;
+
+    public BaltabayAsselCourseController(BaltabayAsselCourseService courseService) {
+        this.courseService = courseService;
+    }
 
     @GetMapping
     public Page<CourseResponse> findAll(

@@ -25,14 +25,14 @@ import kz.baltabay.assel.courseplatform.repository.BaltabayAsselEnrollmentReposi
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselLessonRepository;
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselSubmissionRepository;
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselUserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class BaltabayAsselLearningService {
+    private static final Logger log = LoggerFactory.getLogger(BaltabayAsselLearningService.class);
+
     private final BaltabayAsselCourseService courseService;
     private final BaltabayAsselUserRepository userRepository;
     private final BaltabayAsselLessonRepository lessonRepository;
@@ -41,6 +41,24 @@ public class BaltabayAsselLearningService {
     private final BaltabayAsselSubmissionRepository submissionRepository;
     private final BaltabayAsselLearningMapper mapper;
     private final BaltabayAsselAsyncNotificationService notificationService;
+
+    public BaltabayAsselLearningService(BaltabayAsselCourseService courseService,
+                                        BaltabayAsselUserRepository userRepository,
+                                        BaltabayAsselLessonRepository lessonRepository,
+                                        BaltabayAsselEnrollmentRepository enrollmentRepository,
+                                        BaltabayAsselAssignmentRepository assignmentRepository,
+                                        BaltabayAsselSubmissionRepository submissionRepository,
+                                        BaltabayAsselLearningMapper mapper,
+                                        BaltabayAsselAsyncNotificationService notificationService) {
+        this.courseService = courseService;
+        this.userRepository = userRepository;
+        this.lessonRepository = lessonRepository;
+        this.enrollmentRepository = enrollmentRepository;
+        this.assignmentRepository = assignmentRepository;
+        this.submissionRepository = submissionRepository;
+        this.mapper = mapper;
+        this.notificationService = notificationService;
+    }
 
     public LessonResponse createLesson(Long courseId, LessonRequest request) {
         BaltabayAsselLesson lesson = new BaltabayAsselLesson();

@@ -12,8 +12,8 @@ import kz.baltabay.assel.courseplatform.exception.BaltabayAsselBadRequestExcepti
 import kz.baltabay.assel.courseplatform.mapper.BaltabayAsselUserMapper;
 import kz.baltabay.assel.courseplatform.repository.BaltabayAsselUserRepository;
 import kz.baltabay.assel.courseplatform.security.BaltabayAsselJwtUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,10 +21,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class BaltabayAsselAuthService {
+    private static final Logger log = LoggerFactory.getLogger(BaltabayAsselAuthService.class);
+
     private final BaltabayAsselUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -32,6 +32,22 @@ public class BaltabayAsselAuthService {
     private final BaltabayAsselJwtUtil jwtUtil;
     private final BaltabayAsselUserMapper userMapper;
     private final BaltabayAsselAsyncNotificationService notificationService;
+
+    public BaltabayAsselAuthService(BaltabayAsselUserRepository userRepository,
+                                    PasswordEncoder passwordEncoder,
+                                    AuthenticationManager authenticationManager,
+                                    UserDetailsService userDetailsService,
+                                    BaltabayAsselJwtUtil jwtUtil,
+                                    BaltabayAsselUserMapper userMapper,
+                                    BaltabayAsselAsyncNotificationService notificationService) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.jwtUtil = jwtUtil;
+        this.userMapper = userMapper;
+        this.notificationService = notificationService;
+    }
 
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.email())) {

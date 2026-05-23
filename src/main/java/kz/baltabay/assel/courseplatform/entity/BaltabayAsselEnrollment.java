@@ -10,11 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "enrollments")
 public class BaltabayAsselEnrollment {
@@ -35,4 +31,44 @@ public class BaltabayAsselEnrollment {
 
     @Column(nullable = false)
     private int progressPercent;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BaltabayAsselUser getStudent() {
+        return student;
+    }
+
+    public void setStudent(BaltabayAsselUser student) {
+        this.student = student;
+    }
+
+    public BaltabayAsselCourse getCourse() {
+        return course;
+    }
+
+    public void setCourse(BaltabayAsselCourse course) {
+        this.course = course;
+    }
+
+    public LocalDateTime getEnrolledAt() {
+        return enrolledAt;
+    }
+
+    public void setEnrolledAt(LocalDateTime enrolledAt) {
+        this.enrolledAt = enrolledAt;
+    }
+
+    public int getProgressPercent() {
+        return progressPercent;
+    }
+
+    public void setProgressPercent(int progressPercent) {
+        this.progressPercent = progressPercent;
+    }
 }

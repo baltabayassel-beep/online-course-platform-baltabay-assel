@@ -5,7 +5,6 @@ import kz.baltabay.assel.courseplatform.dto.BaltabayAsselAuthDtos.AuthResponse;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselAuthDtos.LoginRequest;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselAuthDtos.RegisterRequest;
 import kz.baltabay.assel.courseplatform.service.BaltabayAsselAuthService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,9 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
 public class BaltabayAsselAuthController {
     private final BaltabayAsselAuthService authService;
+
+    public BaltabayAsselAuthController(BaltabayAsselAuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)

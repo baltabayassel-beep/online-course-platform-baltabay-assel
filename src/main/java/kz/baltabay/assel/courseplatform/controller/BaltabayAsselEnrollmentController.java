@@ -5,7 +5,6 @@ import java.util.List;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.EnrollmentRequest;
 import kz.baltabay.assel.courseplatform.dto.BaltabayAsselLearningDtos.EnrollmentResponse;
 import kz.baltabay.assel.courseplatform.service.BaltabayAsselLearningService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/enrollments")
-@RequiredArgsConstructor
 public class BaltabayAsselEnrollmentController {
     private final BaltabayAsselLearningService learningService;
+
+    public BaltabayAsselEnrollmentController(BaltabayAsselLearningService learningService) {
+        this.learningService = learningService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

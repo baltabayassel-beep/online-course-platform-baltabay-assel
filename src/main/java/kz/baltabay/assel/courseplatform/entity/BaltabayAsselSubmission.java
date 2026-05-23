@@ -12,11 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "submissions")
 public class BaltabayAsselSubmission {
@@ -43,4 +39,60 @@ public class BaltabayAsselSubmission {
 
     @Column(nullable = false)
     private LocalDateTime submittedAt = LocalDateTime.now();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BaltabayAsselAssignment getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(BaltabayAsselAssignment assignment) {
+        this.assignment = assignment;
+    }
+
+    public BaltabayAsselUser getStudent() {
+        return student;
+    }
+
+    public void setStudent(BaltabayAsselUser student) {
+        this.student = student;
+    }
+
+    public String getAnswerText() {
+        return answerText;
+    }
+
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
+    }
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+    public BaltabayAsselSubmissionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BaltabayAsselSubmissionStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getSubmittedAt() {
+        return submittedAt;
+    }
+
+    public void setSubmittedAt(LocalDateTime submittedAt) {
+        this.submittedAt = submittedAt;
+    }
 }
