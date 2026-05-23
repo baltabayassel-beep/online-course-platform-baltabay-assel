@@ -2,9 +2,10 @@ spring:
   application:
     name: online-course-platform
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/course_platform}
-    username: ${SPRING_DATASOURCE_USERNAME:course_user}
-    password: ${SPRING_DATASOURCE_PASSWORD:course_password}
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/course_platform;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.h2.Driver}
   jpa:
     hibernate:
       ddl-auto: update
@@ -12,6 +13,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   servlet:
     multipart:
       max-file-size: 20MB

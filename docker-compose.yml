@@ -35,6 +35,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/course_platform
       SPRING_DATASOURCE_USERNAME: course_user
       SPRING_DATASOURCE_PASSWORD: course_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
       JWT_SECRET: change-this-demo-secret-change-this-demo-secret-change-this-demo-secret
       UPLOAD_DIR: /app/data/uploads
     ports:
